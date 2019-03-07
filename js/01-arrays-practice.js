@@ -166,14 +166,14 @@
 
 //Copy the code from step 14. Now add a third employee and set his employment status to false. Then, programmatically loop through the array but don’t display an employee if they aren’t a current employee of the company. Basically, only the first two should appear in the console window.
 
-var employee1 = {employeeID: 1, name: 'Mark', title:'Manager', department:'Sales', employed:true},
-    employee2 = {employeeID: 2, name: 'Paula',title:'Associate', department:'Sales', employed:true},
-    employee3 = {employeeID: 3, name: 'Rubio',title:'Associate', department:'Customer Service', employed:false},
-    employees = [employee1, employee2, employee3];
-
-for(var i in employees)
-	if(employees[i].employed === true)
-		window.console.log(employees[i].name);
+//var employee1 = {employeeID: 1, name: 'Mark', title:'Manager', department:'Sales', employed:true},
+//    employee2 = {employeeID: 2, name: 'Paula',title:'Associate', department:'Sales', employed:true},
+//    employee3 = {employeeID: 3, name: 'Rubio',title:'Associate', department:'Customer Service', employed:false},
+//    employees = [employee1, employee2, employee3];
+//
+//for(var i in employees)
+//	if(employees[i].employed === true)
+//		window.console.log(employees[i].name);
 
 
 
@@ -222,7 +222,11 @@ for(var i in employees)
 //Expected Result: [58, "abcd", true]
 
 
+function filterValues(arr){
+    arr.filter(e => typeof e === 'string' && e !== '');
+}
 
+window.console.log(filterValues([58, '', 'abcd', true, null, false, 0]));
 
 
 ////------------ STEP 19 ------------////
