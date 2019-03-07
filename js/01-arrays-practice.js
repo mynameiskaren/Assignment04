@@ -203,6 +203,15 @@ for(var i in employees)
 //SALLY
 //
 
+//var employees = ['Sahil', 'Amanda', 'James', 'Carlos', 'Alice', 'Jessica', 'Kim', 'Isabella'];
+//
+//function showEmployee(arr){
+//	window.console.log('Employees:\n\n');
+//	for(var i in arr)
+//		window.console.log(arr[i]);
+//}
+//
+//showEmployee(employees);
 
 
 
