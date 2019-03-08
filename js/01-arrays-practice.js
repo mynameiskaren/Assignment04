@@ -222,18 +222,27 @@
 //Expected Result: [58, "abcd", true]
 
 
-function filterValues(arr){
-    arr.filter(e => typeof e === 'string' && e !== '');
-}
+//function filterValues(arr){
+//    arr = arr.filter(function (n) { 
+//        return (n !== undefined && n !== null && n !== false && n !== 0 && n !== '' && isNaN() != NaN); 
+//    });
+//    return arr;
+//}
+//window.console.log(filterValues([58, '', 'abcd', true, null, false, 0]));
 
-window.console.log(filterValues([58, '', 'abcd', true, null, false, 0]));
 
 
 ////------------ STEP 19 ------------////
 
 //Write a JavaScript function to get a random item from an array. So if I create a numeric array with 10 numbers and then pass that array into my function, the function should randomly return one of those numbers.
 
-
+//function randomIndex(arr){
+//    
+//    var rando = Math.floor(Math.random() * arr.length) + 1;
+//    //window.console.log(arr.length + "\n" + rando);
+//    return console.log(arr[rando]);
+//}
+//randomIndex([1, 10, 100, 1000, 2, 20, 200, 2000, 3, 30]);
 
 
 
@@ -241,5 +250,21 @@ window.console.log(filterValues([58, '', 'abcd', true, null, false, 0]));
 
 //	Write a JavaScript function to get the largest number from a numeric array.
 
-
-
+//var numbers = [1, 10, 100, 1000, 2, 20, 200, 2000, 3, 30];
+//
+//function theMax(arr){
+//    //return Math.max.apply(Math, arr); //Alternative
+//    //return Math.max(...arr);          //Either one works
+//    var largest = 0, a = arr.length, counter;
+//
+//    for (counter = 0; counter < a; counter++)
+//    {
+//        if (arr[counter] > largest)
+//            largest = arr[counter];
+//    }
+//    return largest;
+//}
+//
+//window.console.log(theMax(numbers));
+//
+//
