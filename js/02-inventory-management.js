@@ -3,6 +3,7 @@
 //The Product Inventory Management System (55 points)
 //In this part of the assignment you will use multi-dimensional arrays to build a small inventory management system. Here are the specifics:
 //•	The primary array will be “inventory”.
+
 //•	The nested arrays (products) will each contain elements that represent sku (number), product (string), quantity (number), and cost (floating point number).
 //•	You should have at least 5 products in your inventory.
 //•	Similar to lab 9, your application should display a title in the console window along with a command menu that features commands to view all products, update stock, and exit the program. 
@@ -20,70 +21,89 @@
 //•	Make sure to validate all inputs. If the user enters a command that’s not valid, the application should be able to handle that. Similarly, if the user enters a bad sku number, or text instead of a number when updating stock, the application should be able to handle that too.
 
 
-//GLOBAL VARIABLES
-var storage;
-var list = "";
-var task;
-var tasks = [];
 
-//GET THE DOM ELEMENT
-var $ = function (id) {
+/******************************************/
+/*******    FUNCTION - MENU         *******/
+/******************************************/
+function menu(inv){
     "use strict";
-    return document.getElementById(id);
-};
+    var command = "";
+    var proceed = true;
+    window.console.log("-----------------------------------------------\n" + 
+                       "| Welcome to the inventory management system! |\n" + 
+                       "|                                             |\n" + 
+                       "---------------COMMAND MENU--------------------\n" + 
+                       "|      > show - Show all products             |\n" + 
+                       "|      > update - Update stock                |\n" + 
+                       "|      > exit - Exit the program              |\n" + 
+                       "-----------------------------------------------\n" + 
+                       "| Please enter command in the prompted window.|\n" + 
+                       "-----------------------------------------------");
+    window.console.log(command);
+    do{
+        command = window.prompt("-------------------------------------------------------\nWelcome to the inventory management system!\n\n-----------------COMMAND MENU------------------\n       > show - Show all products\n       > update - Update stock\n       > exit - Exit the program\n--------------------------------------------------------\nEnter command:");
+        if(command === 'show')          {   display(inv);       }
+        else if(command === 'update')   {   update(inv);        }
+        else if(command == 'exit')      {   proceed = false;    }
+    }while(proceed);
+}
 
-//DISPLAY THE TASK
-var displayTaskList = function () {
+
+/******************************************/
+/*******    FUNCTION - DISPLAY      *******/
+/******************************************/
+function display(arr){
     "use strict";
-    // if there are no tasks in tasks array, check storage
-    if (tasks.length === 0) {
-        // get tasks from storage or empty string if nothing in storage
-        storage = localStorage.getItem("tasks") || "";
-
-        // if not empty, convert to array and store in global tasks variable
-        if (storage.length > 0) {
-            tasks = storage.split("|");
-        }
-    }
+    var i = 1;
+    arr.forEach(function (product) {
+        window.console.log(i + ". " + product['sku'] + " " + product['name'] + " " + "(" + product['quantity'] + ") " + product['cost']);
+        i += 1;
+    });
+    window.console.log("");
     
-    // if there are tasks in array, sort and create tasks string
-    if (tasks.length > 0) {
-        tasks.sort();
-        list = tasks.join("\n");
-    }
-    // display tasks string
-    $("task_list").value = list;
-};
+/*    arr.forEach (function each(item){
+        if (Array.isArray(item))
+            item.forEach(each);
+        else
+            window.console.log(item);
+    });*/
+    
+}
 
-//ADD A TASK
-var addToTaskList = function () {
+/******************************************/
+/*******    FUNCTION - UPDATE       *******/
+/******************************************/
+function update(arr){
     "use strict";
-    task = $("task");
-    if (task.value === "") {
-        window.alert("Please enter a task.");
-    } else {
-        // add task to array and local storage
-        tasks.push(task.value);
-        localStorage.tasks = tasks.join("|");
+    window.console.log('updaing array');
+    return arr;
+}
 
-        // clear task text box and re-display tasks
-        task.value = "";
-        displayTaskList();
-    }
-};
 
-//CLEAR TASK LIST
-var clearTaskList = function () {
+/******************************************/
+/*******    FUNCTION - MAIN         *******/
+/******************************************/
+function main(){
     "use strict";
-    tasks.length = 0;           //clear the array
-    localStorage.tasks = "";    //empty out the storage object
-    $("task_list").value = "";  //clear the text field
-};
+    var inventory = [];
+    var product1, product2, product3, product4, product5;
+    
+    product1 = [2233, "Hat", "(12)", "$14.99"];
+    product2 = [3223, "Socks", "(36)", "$9.99"];
+    product3 = [4824, "Shirt", "(10)", "$15.99"];
+    product4 = [6343, "Jeans", "(22)", "$39.99"];
+    product5 = [9382, "Jacket", "(5)", "$49.99"];
 
-//WIRE UP EVENT HANDLERS AND DISPLAY TASK LIST
-window.addEventListener("load", function () {
-    "use strict";
-    $("add_task").addEventListener("click", addToTaskList);
-    $("clear_tasks").addEventListener("click", clearTaskList);
-    displayTaskList();
-});
+    inventory = [product1, product2, product3, product4, product5];
+    
+    menu(inventory);
+}
+
+
+
+main();
+
+
+
+
+
