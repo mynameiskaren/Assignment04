@@ -42,7 +42,7 @@ function menu(inv){
     window.console.log(command);
     do{
         command = window.prompt("-------------------------------------------------------\nWelcome to the inventory management system!\n\n-----------------COMMAND MENU------------------\n       > show - Show all products\n       > update - Update stock\n       > exit - Exit the program\n--------------------------------------------------------\nEnter command:");
-        if(command === 'show')          {   display(inv);       }
+        if(command === 'show')          {   show(inv);       }
         else if(command === 'update')   {   update(inv);        }
         else if(command == 'exit')      {   proceed = false;    }
     }while(proceed);
@@ -52,13 +52,12 @@ function menu(inv){
 /******************************************/
 /*******    FUNCTION - DISPLAY      *******/
 /******************************************/
-function display(arr){
+function show(inv){
     "use strict";
-    var i = 1;
-    arr.forEach(function (product) {
-        window.console.log(i + ". " + product['sku'] + " " + product['name'] + " " + "(" + product['quantity'] + ") " + product['cost']);
-        i += 1;
-    });
+
+    for(var i = 0; i < inv.length; i++) {
+        window.console.log((i+1) + ". " + inv[i][0] + " " + inv[i][1] + " " + "(" + inv[i][2] + ") $" + inv[i][3]);
+    }
     window.console.log("");
     
 /*    arr.forEach (function each(item){
@@ -73,10 +72,23 @@ function display(arr){
 /******************************************/
 /*******    FUNCTION - UPDATE       *******/
 /******************************************/
-function update(arr){
+function update(inv){
     "use strict";
     window.console.log('updaing array');
-    return arr;
+
+    var prod_sku = window.prompt("Please enter product sku");
+    var sku_quantity = window.prompt("Please enter product quantity");
+    var i;
+    for (i = 0; i < inv.length; i += 1) {
+        if (prod_sku === (inv[i][0])) {
+            inv[i][2] =  sku_quantity;
+            break;
+        }
+    }
+    localStorage.setItem("sku", prod_sku);
+    localStorage.setItem("quantity", sku_quantity);
+    show(inv);
+    window.console.log(" ");
 }
 
 
@@ -85,16 +97,15 @@ function update(arr){
 /******************************************/
 function main(){
     "use strict";
-    var inventory = [];
     var product1, product2, product3, product4, product5;
     
-    product1 = [2233, "Hat", "(12)", "$14.99"];
-    product2 = [3223, "Socks", "(36)", "$9.99"];
-    product3 = [4824, "Shirt", "(10)", "$15.99"];
-    product4 = [6343, "Jeans", "(22)", "$39.99"];
-    product5 = [9382, "Jacket", "(5)", "$49.99"];
+    product1 = [2233, "Hat", "12", "14.99"];
+    product2 = [3223, "Socks", "36", "9.99"];
+    product3 = [4824, "Shirt", "10", "15.99"];
+    product4 = [6343, "Jeans", "22", "39.99"];
+    product5 = [9382, "Jacket", "5", "49.99"];
 
-    inventory = [product1, product2, product3, product4, product5];
+    var inventory = [product1, product2, product3, product4, product5];
     
     menu(inventory);
 }
